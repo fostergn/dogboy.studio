@@ -19,6 +19,7 @@ form > label {
 
 form > label > span {
   padding-right:8px;
+  min-width: 80px;
 }
 
 form > label > input, form > label > textarea {
