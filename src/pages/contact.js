@@ -18,6 +18,19 @@ class Contact extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  handleResponse = (response) => {
+
+    const form = document.forms[0];
+    const inputs = Array.from(form.querySelectorAll('input')).concat(Array.from(form.querySelectorAll('textarea')));
+    const submit = form.querySelector('button');
+
+    inputs.forEach(input => input.value = '');
+
+    submit.innerHTML = response;
+
+    setTimeout(() => submit.innerHTML = 'Send', 2000);
+  }
+
   handleSubmit = e => {
 
     e.preventDefault();
@@ -27,8 +40,8 @@ class Contact extends Component {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "contact", ...this.state })
     })
-      .then(() => alert("Success!"))
-      .catch(error => alert(error));
+      .then(() => this.handleResponse('Success'))
+      .catch(error => this.handleResponse('Error'));
   };
 
   render() {
