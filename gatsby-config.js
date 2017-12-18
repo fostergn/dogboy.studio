@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Studio Dog Boy`
   },
   plugins: [
     `gatsby-transformer-remark`,
@@ -16,6 +16,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-netlify`
-    }
+    },
+    `gatsby-transformer-sharp`
   ],
 }

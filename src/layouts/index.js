@@ -2,58 +2,32 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import Nav from './nav'
 
 import './index.css'
 
 const Header = () => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
+    <div className="logo__wrapper">
+      <Link to="/">
+        <h1 className="logo__title">
           Studio Dog Boy
-        </Link>
-      </h1>
+        </h1>
+      </Link>
     </div>
-  </div>
 )
 
-const TemplateWrapper = ({ children }) => (
+const TemplateWrapper = ({ children, data }) => (
   <div>
     <Helmet
       title="Studio Dog Boy"
       meta={[
-        { name: 'description', content: 'Video Game Blog for Studio Dog Boy game Dog Days' },
-        { name: 'keywords', content: 'video-game, studio dog boy, dog days' },
+        { name: 'description', content: 'Sample' },
+        { name: 'keywords', content: 'sample, something' },
       ]}
     />
     <Header />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-      }}
-    >
-      {children()}
-    </div>
+    <Nav data={data} />
+    {children()}
   </div>
 )
 
@@ -62,3 +36,13 @@ TemplateWrapper.propTypes = {
 }
 
 export default TemplateWrapper
+
+export const query = graphql`
+  query MenuQuery {
+    contentfulMenu {
+      menu {
+        items
+      }
+    }
+  }
+`
