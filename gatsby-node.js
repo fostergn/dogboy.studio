@@ -12,11 +12,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
  const { createPage } = boundActionCreators
 
- return new Promise(async(resolve, reject) => {
+ return new Promise((resolve, reject) => {
 
    const posts = `allContentfulPost`;
 
-   await graphql(
+   const postPromise = graphql(
      `
        {
          ${posts}(limit: 1000) {
@@ -53,7 +53,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
    const pages = `allContentfulPage`;
 
-   await graphql(
+   const pagePromise = graphql(
      `
        {
          ${pages}(limit: 1000) {
@@ -89,6 +89,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
        // return resolve();
      })
 
-    return resolve();
+    Promise.all([postPromise, pagePromise]).then(() => resolve())
    });
 }
