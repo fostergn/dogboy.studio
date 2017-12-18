@@ -12,7 +12,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
  const { createPage } = boundActionCreators
 
- return new Promise((resolve, reject) => {
+ return new Promise(async(resolve, reject) => {
 
    const posts = `allContentfulPost`;
 
