@@ -21,8 +21,8 @@ const TemplateWrapper = ({ children, data }) => (
     <Helmet
       title="Studio Dog Boy"
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        { name: 'description', content: 'Studio Dog Boy presents Dog Days, a community simulation game.' },
+        { name: 'keywords', content: 'game, video game, simulation, interactive, online, virtual game' },
       ]}
     />
     <Header />
