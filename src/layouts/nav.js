@@ -3,21 +3,41 @@ import Link from 'gatsby-link'
 
 const Nav = ({data}) => {
 
-  const menuItems = data.contentfulMenu.menu.items;
+  const menuItems = data.contentfulMenu.menu.main;
+  const secondaryMenuItems = data.contentfulMenu.menu.secondary;
 
-  const menuList = menuItems.map(item => {
+  const menuList = menuItems ? menuItems.map(item => {
 
     return (
-      <Link key={item} to={`/${item}`}>{item}</Link>
+      <Link key={item.url} to={item.url}>{item.text}</Link>
     )
-  })
+  }) : [];
+
+  const secondaryMenuList = secondaryMenuItems ? secondaryMenuItems.map(item => {
+
+    if (item.external) {
+
+      return <a target="_blank" key={item.url} href={item.url}>{item.text}</a>
+    }
+
+    return (
+      <Link key={item.url} to={item.url}>{item.text}</Link>
+    )
+  }) : [];
 
   return (
-    <nav>
-      <ul className="nav__list">
-        {menuList}
-      </ul>
-    </nav>
+    <div>
+      <nav>
+        <ul className="nav__list">
+          {menuList}
+        </ul>
+      </nav>
+      <nav className="nav--secondary">
+        <ul className="nav__list">
+          {secondaryMenuList}
+        </ul>
+      </nav>
+    </div>
   )
 }
 

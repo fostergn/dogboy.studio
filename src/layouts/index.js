@@ -41,7 +41,15 @@ export const query = graphql`
   query MenuQuery {
     contentfulMenu {
       menu {
-        items
+        main {
+          url,
+          text
+        }
+        secondary {
+          url,
+          text,
+          external
+        }
       }
     }
   }
