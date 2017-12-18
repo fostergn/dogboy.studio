@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import './contact.css'
 
+const encode = (data) => {
+  return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+}
+
 class Contact extends Component {
 
   constructor(props) {
@@ -13,6 +19,9 @@ class Contact extends Component {
   }
 
   handleSubmit = e => {
+
+    e.preventDefault();
+
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -20,8 +29,6 @@ class Contact extends Component {
     })
       .then(() => alert("Success!"))
       .catch(error => alert(error));
-
-    e.preventDefault();
   };
 
   render() {
@@ -34,7 +41,7 @@ class Contact extends Component {
             action="/thanks/"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            onSubmit={this.handleSubmit}
+            onSubmit={(e) => this.handleSubmit(e)}
           >
           <label>
             <span>Name </span>
